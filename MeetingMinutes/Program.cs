@@ -59,16 +59,35 @@ namespace MeetingMinutes
                 Alltext += "\r\nType of meeteing : " + SelectedType;
                 Alltext += "\r\nMeeting Topic : " + topic;
                 Alltext += "\r\nMeeting Notes : " + notes;
+              
+
+                string NewTopic = "";
+                string NewNotes = "";
+                Console.WriteLine("would you like to enter notes for another topic");
+                string answer = Console.ReadLine();
+                while (answer == "yes")
+                {
+                    
+                    Console.WriteLine("Topic name?");
+                    NewTopic = Console.ReadLine();
+                    Alltext += "\r\nAnother topic" + NewTopic;
+                    Console.WriteLine("Notes for new topic");
+                    NewNotes = Console.ReadLine();
+                    Alltext += "\r\nNotes for  new topic" + NewNotes;
+                    Console.WriteLine("would you like to enter notes for another topic");
+                    answer = Console.ReadLine();
+
+
+
+                }
+
                 WriteText("Minutes" + date + ".txt", Alltext);
                 string textdata = ReadText("Minutes" + date + ".txt");
                 Console.WriteLine(textdata);
 
-            }
-          
+               }
 
-
-
-            else if (choose == 2)
+             else if (choose == 2)
             {
                 string Marketing = "(Marketing)";
                 string Admin = "(Admin)";
@@ -89,40 +108,9 @@ namespace MeetingMinutes
                 foreach (KeyValuePair<string, string> members in Team)
 
                     Console.WriteLine(members);
-                string team1value = Marketing;
-                foreach (KeyValuePair<string, string> marketing in Team)
-                {
-                    if (team1value == marketing.Value)
-                    {
-                        Console.WriteLine(marketing);
-                    }
-                  
-
-                }
-                string team2value = Admin;
-                foreach (KeyValuePair<string, string> admin in Team)
-                {
-                    if (team2value == admin.Value)
-                    {
-                        Console.WriteLine(admin);
-                    }
-
-
-                }
-
-                foreach (KeyValuePair<string, string> allteam in Team)
-                {
-                    if (team2value == allteam.Value)
-                    {
-                        Console.WriteLine(allteam);
-                    }
-
-
-                }
-
-
-
-
+                Console.WriteLine("enter team name to print team members?");
+                string teamName = Console.ReadLine();
+                PrintTeamMembers(Team, teamName);
 
             }
 
@@ -132,6 +120,17 @@ namespace MeetingMinutes
             }
 
 
+        }
+
+        static void PrintTeamMembers(Dictionary<string,string> TeamMember,string TeamName)
+        {
+            foreach (KeyValuePair<string, string> member in TeamMember)
+            {
+                if ("(" + TeamName + ")" == member.Value)
+                {
+                    Console.WriteLine(member);
+                }
+            }
         }
 
         static void WriteText(string FilePath, string text)
