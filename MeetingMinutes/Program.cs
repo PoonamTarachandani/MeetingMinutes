@@ -70,10 +70,10 @@ namespace MeetingMinutes
                     
                     Console.WriteLine("Topic name?");
                     NewTopic = Console.ReadLine();
-                    Alltext += "\r\nAnother topic" + NewTopic;
+                    Alltext += "\r\nAnother topic :" + NewTopic;
                     Console.WriteLine("Notes for new topic");
                     NewNotes = Console.ReadLine();
-                    Alltext += "\r\nNotes for  new topic" + NewNotes;
+                    Alltext += "\r\nNotes for  new topic :" + NewNotes;
                     Console.WriteLine("would you like to enter notes for another topic");
                     answer = Console.ReadLine();
 
@@ -126,7 +126,7 @@ namespace MeetingMinutes
         {
             foreach (KeyValuePair<string, string> member in TeamMember)
             {
-                if ("(" + TeamName + ")" == member.Value)
+                if ("(" + TeamName.ToLower() + ")" == member.Value.ToLower())
                 {
                     Console.WriteLine(member);
                 }
